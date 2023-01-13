@@ -122,8 +122,6 @@ namespace UnitTests
             var testSwordParameters = DefaultParameters;
 
             testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
-            testSwordParameters.BladeLength = SwordParameters.MAX_GUARD_WIGHT
-                - SwordParameters.SLITE_HEAD_DIFFERENCE;
             testSwordParameters.BladeLength = SwordParameters.MIN_BLADE_LENGTH;
 
             Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MIN_BLADE_LENGTH
@@ -137,12 +135,9 @@ namespace UnitTests
             var testSwordParameters = DefaultParameters;
 
             testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
-            testSwordParameters.BladeLength = SwordParameters.MAX_GUARD_WIGHT
-                - SwordParameters.SLITE_HEAD_DIFFERENCE;
             testSwordParameters.GuardWidht = SwordParameters.MIN_GUARD_WIGHT;
 
-            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MIN_GUARD_WIGHT
-                - SwordParameters.SLITE_HEAD_DIFFERENCE),
+            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MIN_GUARD_WIGHT),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
     }
