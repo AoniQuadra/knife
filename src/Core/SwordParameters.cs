@@ -89,7 +89,9 @@ namespace Core
         /// <summary>
         /// Константы ограничений для параметров
         /// </summary>
-        //public const int SLITE_HEAD_DIFFERENCE = 2;
+        
+        public const int HANDLE_LENGHT_DIFFERENCE = 250;
+        public const int BLADE_THIСK_DIFFERENCE = 15;
 
         /// <summary>
         /// Задаёт или возвращает общую длину меча
@@ -106,8 +108,11 @@ namespace Core
         public int BladeLength
         {
             get => _bladeLength.Value;
-            set => _bladeLength.Value = value;
-            
+            set
+            {            
+                _bladeLength.Value = value;
+                _handleLenghtWithGuard.Value = value - HANDLE_LENGHT_DIFFERENCE;
+            }
         }
 
         /// <summary>
@@ -116,8 +121,12 @@ namespace Core
         public int BladeThikless
         {
             get => _bladeThikless.Value;
-            set =>_bladeThikless.Value = value;
+            set
+            { 
+                _bladeThikless.Value = value;
+                _handleDiameter.Value = value -  BLADE_THIСK_DIFFERENCE;
             }
+        }
 
         /// <summary>
         /// Задаёт или возвращает ширину гарды
@@ -141,7 +150,7 @@ namespace Core
             set
             {
                 _handleDiameter.Value = value;
-                _bladeThikless.Value = value;
+                _bladeThikless.Value = value + BLADE_THIСK_DIFFERENCE;
             }
         }
 
@@ -151,7 +160,11 @@ namespace Core
         public int HandleLenghtWithGuard
         {
             get => _handleLenghtWithGuard.Value;
-            set => _handleLenghtWithGuard.Value = value;
+            set 
+            {
+                _handleLenghtWithGuard.Value = value;
+                _handleBladeLenght.Value = value + HANDLE_LENGHT_DIFFERENCE;
+            }
         }
 
         /// <summary>

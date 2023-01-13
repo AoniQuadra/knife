@@ -200,10 +200,12 @@
             // 
             // WaveguideParametersPictureBox
             // 
+            this.WaveguideParametersPictureBox.ErrorImage = ((System.Drawing.Image)(resources.GetObject("WaveguideParametersPictureBox.ErrorImage")));
             this.WaveguideParametersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("WaveguideParametersPictureBox.Image")));
+            this.WaveguideParametersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("WaveguideParametersPictureBox.InitialImage")));
             this.WaveguideParametersPictureBox.Location = new System.Drawing.Point(377, 28);
             this.WaveguideParametersPictureBox.Name = "WaveguideParametersPictureBox";
-            this.WaveguideParametersPictureBox.Size = new System.Drawing.Size(151, 300);
+            this.WaveguideParametersPictureBox.Size = new System.Drawing.Size(71, 300);
             this.WaveguideParametersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.WaveguideParametersPictureBox.TabIndex = 65;
             this.WaveguideParametersPictureBox.TabStop = false;
@@ -212,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 340);
+            this.ClientSize = new System.Drawing.Size(462, 340);
             this.Controls.Add(this.WaveguideParametersPictureBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.BuildButton);
