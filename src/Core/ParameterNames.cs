@@ -3,6 +3,7 @@
     /// <summary>
     /// Перечисление содержащее имена параметров.
     /// </summary>
+    // TODO: переименовать ParameterType
     public enum ParameterNames
     {
         /// <summary>

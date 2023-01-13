@@ -63,7 +63,6 @@ namespace KompasWrapper
                 bladeLength / 2 - 200, true);
 
             // Создание вершины острия меча.
-
             // Координаты точек вершины меча.
             var edgePoints = ChangeScale(basePoints, 0.01, 0.01);
 
@@ -75,7 +74,6 @@ namespace KompasWrapper
             _connector.ExtrudeBySections();
 
             // Создание перехода к рукояти.
-
             _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
             _connector.CreatePolygonByOffsetPlane(basePoints, 
                 -bladeLength / 2 + 50, true);
@@ -211,6 +209,7 @@ namespace KompasWrapper
 
             // Центральный круг навершия.
 
+            // TODO: Вынести в константы магические числа
             radius = handleDiameter / 2 + 8;
             _connector.CreateOffsetPlane(bladeLength / 2 + handleLengthWithGuard - 25, 
                 true);

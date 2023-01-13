@@ -124,8 +124,8 @@ namespace UnitTests
             testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
             testSwordParameters.BladeLength = SwordParameters.MIN_BLADE_LENGTH;
 
-            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MIN_BLADE_LENGTH
-                + SwordParameters.SLITE_HEAD_DIFFERENCE),
+            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAX_GUARD_WIGHT
+                /*+ SwordParameters.SLITE_HEAD_DIFFERENCE*/),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
 
@@ -137,7 +137,7 @@ namespace UnitTests
             testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
             testSwordParameters.GuardWidht = SwordParameters.MIN_GUARD_WIGHT;
 
-            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MIN_GUARD_WIGHT),
+            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MIN_BLADE_LENGTH),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
     }

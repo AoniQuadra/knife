@@ -2,6 +2,7 @@
 
 namespace Core
 {
+    // TODO: Грам ошибки проверить
     /// <summary>
     /// Класс хранящий параметры меча
     /// </summary>
@@ -29,7 +30,7 @@ namespace Core
                 MAX_BLADE_THIKLESS, MIN_BLADE_THIKLESS);
 
         /// <summary>
-        /// ширина гарды
+        /// Ширина гарды
         /// </summary>
         private static Parameter _guardWidht =
             new(ParameterNames.GuardWidth,
@@ -45,6 +46,7 @@ namespace Core
         /// <summary>
         /// Длина рукоятки вместе с гардой
         /// </summary>
+        // Грам ошибка
         private static Parameter _handleLenghtWithGuard =
             new(ParameterNames.HandleLengthWithGuard,
                 MAX_HANDLE_LENGHT_WITH_GUARD, MIN_HANDLE_LENGHT_WITH_GUARD);
@@ -68,6 +70,8 @@ namespace Core
         /// Конастанты минимальных и максимальных значений параметров в мм
         /// Минимальные значения являются дефолтными
         /// </summary>
+        // TODO: RSDN
+        // TODO: XML для каждого
         public const int MIN_SWORD_LENGTH = 1000;
         public const int MAX_SWORD_LENGTH = 1500;
 
@@ -90,8 +94,8 @@ namespace Core
         /// Константы ограничений для параметров
         /// </summary>
         
-        public const int HANDLE_LENGHT_DIFFERENCE = 250;
-        public const int BLADE_THIСK_DIFFERENCE = 15;
+        //public const int HANDLE_LENGHT_DIFFERENCE = 250;
+        //public const int BLADE_THIСK_DIFFERENCE = 15;
 
         /// <summary>
         /// Задаёт или возвращает общую длину меча
@@ -111,7 +115,7 @@ namespace Core
             set
             {            
                 _bladeLength.Value = value;
-                _handleLenghtWithGuard.Value = value - HANDLE_LENGHT_DIFFERENCE;
+                //_handleLenghtWithGuard.Value = value - HANDLE_LENGHT_DIFFERENCE;
             }
         }
 
@@ -124,7 +128,7 @@ namespace Core
             set
             { 
                 _bladeThikless.Value = value;
-                _handleDiameter.Value = value -  BLADE_THIСK_DIFFERENCE;
+                //_handleDiameter.Value = value -  BLADE_THIСK_DIFFERENCE;
             }
         }
 
@@ -134,11 +138,7 @@ namespace Core
         public int GuardWidht
         {
             get => _guardWidht.Value;
-            set
-            {
-                _guardWidht.Value = value;
-               // _bladeLength.Value = value /*- SLITE_HEAD_DIFFERENCE*/;
-            }
+            set => _guardWidht.Value = value;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Core
             set
             {
                 _handleDiameter.Value = value;
-                _bladeThikless.Value = value + BLADE_THIСK_DIFFERENCE;
+                //_bladeThikless.Value = value + BLADE_THIСK_DIFFERENCE;
             }
         }
 
@@ -163,7 +163,7 @@ namespace Core
             set 
             {
                 _handleLenghtWithGuard.Value = value;
-                _handleBladeLenght.Value = value + HANDLE_LENGHT_DIFFERENCE;
+                //_bladeLength.Value = value + HANDLE_LENGHT_DIFFERENCE;
             }
         }
 
@@ -192,16 +192,22 @@ namespace Core
                 switch (name)
                 {
                     case ParameterNames.BladeLength:
+                    {
                         BladeLength = value;
                         break;
+                    }
                     case ParameterNames.GuardWidth:
+                    {
                         GuardWidht = value;
                         break;
+                    }
                     default:
+                    {
                         _parametersDictionary.TryGetValue(name,
                             out var parameter);
                         parameter.Value = value;
                         break;
+                    }
                 }
             }
         }
