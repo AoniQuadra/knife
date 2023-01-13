@@ -26,7 +26,7 @@ namespace PluginUI
         /// <summary>
         /// Словарь содержащий пары (Текстбоксы, имя параметра)
         /// </summary>
-        private readonly Dictionary<TextBox, ParameterNames> _textBoxesDictionary;
+        private readonly Dictionary<TextBox, SwordParameterType> _textBoxesDictionary;
 
         /// <summary>
         /// Словарь содержащие пары (Текстбокс, корректное ли значение в нём)
@@ -37,14 +37,14 @@ namespace PluginUI
         {
             InitializeComponent();
 
-            _textBoxesDictionary = new Dictionary<TextBox, ParameterNames>
+            _textBoxesDictionary = new Dictionary<TextBox, SwordParameterType>
             {
-                {SwordLengthTextBox, ParameterNames.SwordLength},
-                {BladeLengthTextBox, ParameterNames.BladeLength},
-                {BladeThiklessTextBox, ParameterNames.BladeThickness},
-                {GuardWidhtTextBox, ParameterNames.GuardWidth},
-                {HandleDiameterTextBox, ParameterNames.HandleDiameter},
-                {HandleLenghtWithGuardTextBox, ParameterNames.HandleLengthWithGuard}
+                {SwordLengthTextBox, SwordParameterType.SwordLength},
+                {BladeLengthTextBox, SwordParameterType.BladeLength},
+                {BladeThiklessTextBox, SwordParameterType.BladeThickness},
+                {GuardWidhtTextBox, SwordParameterType.GuardWidth},
+                {HandleDiameterTextBox, SwordParameterType.HandleDiameter},
+                {HandleLenghtWithGuardTextBox, SwordParameterType.HandleLengthWithGuard}
             };
 
             _isValueInTextBoxCorrect = new Dictionary<TextBox, bool>

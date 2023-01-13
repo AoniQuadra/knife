@@ -17,33 +17,33 @@ namespace UnitTests
         /// <summary>
         /// Словарь имён и максимальных значений параметров
         /// </summary>
-        private readonly Dictionary<ParameterNames, int>
+        private readonly Dictionary<SwordParameterType, int>
             _maxValuesOfParameterDictionary =
                 new()
                 {
                     {
-                        ParameterNames.SwordLength,
-                        SwordParameters.MAX_SWORD_LENGTH
+                        SwordParameterType.SwordLength,
+                        SwordParameters.MAXSWORDLENGTH
                     },
                     {
-                        ParameterNames.BladeLength,
-                        SwordParameters.MAX_BLADE_LENGTH
+                        SwordParameterType.BladeLength,
+                        SwordParameters.MAXBLADELENGTH
                     },
                     {
-                        ParameterNames.BladeThickness,
-                        SwordParameters.MAX_BLADE_THIKLESS
+                        SwordParameterType.BladeThickness,
+                        SwordParameters.MAXBLADETHIKLESS
                     },
                     {
-                        ParameterNames.GuardWidth,
-                        SwordParameters.MAX_GUARD_WIGHT
+                        SwordParameterType.GuardWidth,
+                        SwordParameters.MAXGUARDWIGHT
                     },
                     {
-                        ParameterNames.HandleDiameter,
-                        SwordParameters.MAX_HANDLE_DIAMETER
+                        SwordParameterType.HandleDiameter,
+                        SwordParameters.MAXHANDLEDIAMETER
                     },
                     {
-                        ParameterNames.HandleLengthWithGuard,
-                        SwordParameters.MAX_HANDLE_LENGHT_WITH_GUARD
+                        SwordParameterType.HandleLengthWithGuard,
+                        SwordParameters.MAXHANDLELENGHTWITHGUARD
                     },
                 };
 
@@ -81,10 +81,10 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            var newValue = (SwordParameters.MIN_SWORD_LENGTH
-                            + SwordParameters.MIN_SWORD_LENGTH) / 2;
-            ParameterNames testParameterName =
-                ParameterNames.SwordLength;
+            var newValue = (SwordParameters.MINSWORDLENGTH
+                            + SwordParameters.MINSWORDLENGTH) / 2;
+            SwordParameterType testParameterName =
+                SwordParameterType.SwordLength;
             testSwordParameters
                 .SetParameterByName(testParameterName, newValue);
 
@@ -106,13 +106,13 @@ namespace UnitTests
             }
 
             Assert.That(testSwordParameters.SwordLength
-                          == SwordParameters.MAX_SWORD_LENGTH
+                          == SwordParameters.MAXSWORDLENGTH
                           && testSwordParameters.BladeThikless
-                          == SwordParameters.MAX_BLADE_THIKLESS
+                          == SwordParameters.MAXBLADETHIKLESS
                           && testSwordParameters.HandleDiameter
-                          == SwordParameters.MAX_HANDLE_DIAMETER
+                          == SwordParameters.MAXHANDLEDIAMETER
                           && testSwordParameters.HandleLenghtWithGuard
-                          == SwordParameters.MAX_HANDLE_LENGHT_WITH_GUARD, Is.True,
+                          == SwordParameters.MAXHANDLELENGHTWITHGUARD, Is.True,
                 "Возникает, если геттер вернул не то значение");
         }
 
@@ -121,10 +121,10 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
-            testSwordParameters.BladeLength = SwordParameters.MIN_BLADE_LENGTH;
+            testSwordParameters.GuardWidht = SwordParameters.MAXGUARDWIGHT;
+            testSwordParameters.BladeLength = SwordParameters.MINBLADELENGTH;
 
-            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAX_GUARD_WIGHT
+            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAXGUARDWIGHT
                 /*+ SwordParameters.SLITE_HEAD_DIFFERENCE*/),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
@@ -134,10 +134,10 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            testSwordParameters.GuardWidht = SwordParameters.MAX_GUARD_WIGHT;
-            testSwordParameters.GuardWidht = SwordParameters.MIN_GUARD_WIGHT;
+            testSwordParameters.GuardWidht = SwordParameters.MAXGUARDWIGHT;
+            testSwordParameters.GuardWidht = SwordParameters.MINGUARDWIGHT;
 
-            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MIN_BLADE_LENGTH),
+            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MINBLADELENGTH),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
     }

@@ -3,8 +3,8 @@
     /// <summary>
     /// Перечисление содержащее имена параметров.
     /// </summary>
-    // TODO: переименовать ParameterType
-    public enum ParameterNames
+    // TODO: переименовать ParameterType   Done
+    public enum SwordParameterType
     {
         /// <summary>
         /// Длинна меча.

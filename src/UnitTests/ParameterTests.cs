@@ -16,7 +16,7 @@ namespace UnitTests
         [Test(Description = "Позитивный тест на сеттер имени параметра")]
         public void TestParameterNameSet()
         {
-            ParameterNames newName = ParameterNames.SwordLength;
+            SwordParameterType newName = SwordParameterType.SwordLength;
             _testParameter.Name = newName;
 
             Assert.That(_testParameter.Name, Is.EqualTo(newName),
@@ -26,7 +26,7 @@ namespace UnitTests
         [Test(Description = "Позитивный тест на геттер имени параметра")]
         public void TestParameterNameGet()
         {
-            ParameterNames newName = ParameterNames.GuardWidth;
+            SwordParameterType newName = SwordParameterType.GuardWidth;
             _testParameter.Name = newName;
 
             Assert.IsTrue(_testParameter.Name == newName,

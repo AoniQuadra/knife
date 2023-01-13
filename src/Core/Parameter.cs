@@ -25,13 +25,13 @@ namespace Core
         /// <summary>
         /// Название параметра для составления сообщения исключения
         /// </summary>
-        private ParameterNames _name;
+        private SwordParameterType _name;
 
         /// <summary>
         /// Передаёт или задаёт имя, которое должно быть не
         /// пустым или не являтся разделяющим знаком
         /// </summary>
-        public ParameterNames Name
+        public SwordParameterType Name
         {
             get => _name;
             set => _name = value;
@@ -95,7 +95,7 @@ namespace Core
         /// <param name="name">Название параметра</param>
         /// <param name="max">Максимально возможное значение</param>
         /// <param name="min">Минимально возможное значение</param>
-        public Parameter(ParameterNames name, int max, int min)
+        public Parameter(SwordParameterType name, int max, int min)
         {
             Name = name;
             Min = min;
