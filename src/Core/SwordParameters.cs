@@ -2,7 +2,6 @@
 
 namespace Core
 {
-    // TODO: Грам ошибки проверить
     /// <summary>
     /// Класс хранящий параметры меча
     /// </summary>
@@ -13,7 +12,7 @@ namespace Core
         /// </summary>
         private static Parameter _swordLength =
             new(SwordParameterType.SwordLength,
-                MAXSWORDLENGTH, MINSWORDLENGTH);
+                MAXSWORDLENGTH, MinSwordLength);
 
         /// <summary>
         /// Длина лезвия
@@ -60,29 +59,23 @@ namespace Core
         /// Словарь содержащий пары (Имя параметра, указатель на него)
         /// </summary>
         private Dictionary<SwordParameterType, Parameter>
-            _parametersDictionary =
-                new()
-                {
-                    {_swordLength.Name, _swordLength},
-                    {_bladeLength.Name, _bladeLength},
-                    {_bladeThickness.Name, _bladeThickness},
-                    {_guardWidth.Name, _guardWidth},
-                    {_handleDiameter.Name, _handleDiameter},
-                    {_handleLengthWithGuard.Name, _handleLengthWithGuard}
-                };
+	        _parametersDictionary =
+		        new()
+		        {
+			        {_swordLength.Name, _swordLength},
+			        {_bladeLength.Name, _bladeLength},
+			        {_bladeThickness.Name, _bladeThickness},
+			        {_guardWidth.Name, _guardWidth},
+			        {_handleDiameter.Name, _handleDiameter},
+			        {_handleLengthWithGuard.Name, _handleLengthWithGuard}
+		        };
 
-        /// <summary>
-        /// Конастанты минимальных и максимальных значений параметров в мм
-        /// Минимальные значения являются дефолтными
-        /// </summary>
-        // TODO: RSDN     Done
-        // TODO: XML для каждого    Done
-       
         /// <summary>
         /// Минимальная длинна меча
         /// </summary>
-        public const int MINSWORDLENGTH = 1000;
+        public const int MinSwordLength = 1000;
 
+        // TODO: Переименовать константы как на примере выше
         /// <summary>
         /// Максимальная длинна меча
         /// </summary>
@@ -143,6 +136,7 @@ namespace Core
         /// </summary>
         
         //public const int HANDLE_LENGHT_DIFFERENCE = 250;
+        // TODO: не используется
         public const int BLADETHIСKDIFFERENCE = 10;
 
         //сделать так, чтобы менялось максимальное или минимальное значение у параметра, а не значение
@@ -225,7 +219,7 @@ namespace Core
         /// </summary>
         public SwordParameters()
         {
-            SwordLength = MINSWORDLENGTH;
+            SwordLength = MinSwordLength;
             BladeLength = MINBLADELENGTH;
             BladeThikless = MINBLADETHIKLESS;
             GuardWidht = MINGUARDWIGHT;

@@ -3,7 +3,6 @@
     /// <summary>
     /// Перечисление содержащее имена параметров.
     /// </summary>
-    // TODO: переименовать ParameterType   Done
     public enum SwordParameterType
     {
         /// <summary>

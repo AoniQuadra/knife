@@ -81,8 +81,8 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            var newValue = (SwordParameters.MINSWORDLENGTH
-                            + SwordParameters.MINSWORDLENGTH) / 2;
+            var newValue = (SwordParameters.MinSwordLength
+                            + SwordParameters.MinSwordLength) / 2;
             SwordParameterType testParameterName =
                 SwordParameterType.SwordLength;
             testSwordParameters
