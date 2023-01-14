@@ -100,9 +100,9 @@ namespace KompasWrapper
             double offset, bool isSketchCollection)
         {
             // TODO: Дубль
-            ksEntity sketch = 
+            ksEntity sketch =
                 (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
-            ksSketchDefinition definition = 
+            ksSketchDefinition definition =
                 (ksSketchDefinition)sketch.GetDefinition();
             ksEntityCollection collection =
                 (ksEntityCollection)_part.EntityCollection((short)Obj3dType.o3d_planeOffset);

@@ -12,35 +12,35 @@ namespace Core
         /// </summary>
         private static Parameter _swordLength =
             new(SwordParameterType.SwordLength,
-                MAXSWORDLENGTH, MinSwordLength);
+                MaxSwordLength, MinSwordLength);
 
         /// <summary>
         /// Длина лезвия
         /// </summary>
         private static Parameter _bladeLength =
             new(SwordParameterType.BladeLength,
-                MAXBLADELENGTH, MINBLADELENGTH);
+                MaxBladeLength, MinBladeLength);
 
         /// <summary>
         /// Толщина лезвия
         /// </summary>
         private static Parameter _bladeThickness =
             new(SwordParameterType.BladeThickness,
-                MAXBLADETHIKLESS, MINBLADETHIKLESS);
+                MaxBladeThickless, MinBladeThickless);
 
         /// <summary>
         /// Ширина гарды
         /// </summary>
         private static Parameter _guardWidth =
             new(SwordParameterType.GuardWidth,
-                MAXGUARDWIGHT, MINGUARDWIGHT);
+                MaxGuardWigth, MinGuardWigth);
 
         /// <summary>
         /// Диаметр рукоятки
         /// </summary>
         private static Parameter _handleDiameter =
             new(SwordParameterType.HandleDiameter,
-                MAXHANDLEDIAMETER, MINHANDLEDIAMETER);
+                MaxHadleDiameter, MinHandleDiameter);
 
         /// <summary>
         /// Длина рукоятки вместе с гардой
@@ -48,7 +48,7 @@ namespace Core
         // Грам ошибка
         private static Parameter _handleLengthWithGuard =
             new(SwordParameterType.HandleLengthWithGuard,
-                MAXHANDLELENGHTWITHGUARD, MINHANDLELENGHTWITHGUARD);
+                MaxHandleLengthWithGuard, MinHandleLengthWithGuard);
 
         /// <summary>
         /// Возврщает и задаёт тип лезвия
@@ -79,69 +79,57 @@ namespace Core
         /// <summary>
         /// Максимальная длинна меча
         /// </summary>
-        public const int MAXSWORDLENGTH = 1500;
+        public const int MaxSwordLength = 1500;
 
         /// <summary>
         /// Минимальная длинна лезвия
         /// </summary>
-        public const int MINBLADELENGTH = 700;
+        public const int MinBladeLength = 700;
 
         /// <summary>
         /// Максимальная длинна лезвия
         /// </summary>
-        public const int MAXBLADELENGTH = 1000;
+        public const int MaxBladeLength = 1000;
 
         /// <summary>
         /// Минимальная толщина лезвия
         /// </summary>
-        public const int MINBLADETHIKLESS = 5;
+        public const int MinBladeThickless = 5;
 
         /// <summary>
         /// Максимальная толщина лезвия
         /// </summary>
-        public const int MAXBLADETHIKLESS = 15;
+        public const int MaxBladeThickless = 15;
 
         /// <summary>
         /// Минимальная ширина гарды
         /// </summary>
-        public const int MINGUARDWIGHT = 200;
+        public const int MinGuardWigth = 200;
 
         /// <summary>
         /// Максимальная ширина гарды
         /// </summary>
-        public const int MAXGUARDWIGHT = 300;
+        public const int MaxGuardWigth = 300;
 
         /// <summary>
         /// Минимальный диаметр рукоятки
         /// </summary>
-        public const int MINHANDLEDIAMETER = 10;
+        public const int MinHandleDiameter = 10;
 
         /// <summary>
         /// Максимальный диаметр ручки
         /// </summary>
-        public const int MAXHANDLEDIAMETER = 30;
+        public const int MaxHadleDiameter = 30;
 
         /// <summary>
         /// Минимальная длина рукоятки вместе с гардой
         /// </summary>
-        public const int MINHANDLELENGHTWITHGUARD = 175;
+        public const int MinHandleLengthWithGuard = 175;
 
         /// <summary>
         /// Максимальная длина рукоятки вместе с гардой
         /// </summary>
-        public const int MAXHANDLELENGHTWITHGUARD = 250;
-
-        /// <summary>
-        /// Константы ограничений для параметров
-        /// </summary>
-        
-        //public const int HANDLE_LENGHT_DIFFERENCE = 250;
-        // TODO: не используется
-        public const int BLADETHIСKDIFFERENCE = 10;
-
-        //сделать так, чтобы менялось максимальное или минимальное значение у параметра, а не значение
-
-
+        public const int MaxHandleLengthWithGuard = 250;
 
         /// <summary>
         /// Задаёт или возвращает общую длину меча
@@ -158,11 +146,7 @@ namespace Core
         public int BladeLength
         {
             get => _bladeLength.Value;
-            set
-            {            
-                _bladeLength.Value = value;
-                //_handleLengthWithGuard.Value = value - HANDLE_LENGHT_DIFFERENCE;
-            }
+            set => _bladeLength.Value = value;
         }
 
         /// <summary>
@@ -171,11 +155,8 @@ namespace Core
         public int BladeThikless
         {
             get => _bladeThickness.Value;
-            set
-            { 
-                _bladeThickness.Value = value;
-                //_handleDiameter.Value = value -  BLADE_THIСK_DIFFERENCE;
-            }
+            set => _bladeThickness.Value = value;
+                
         }
 
         /// <summary>
@@ -193,12 +174,8 @@ namespace Core
         public int HandleDiameter
         {
             get => _handleDiameter.Value;
-            set
-            {
-                _handleDiameter.Value = value;
-                //_bladeThickness.Value = value + BLADETHIСKDIFFERENCE;
-                //MAXBLADETHIKLESS = MAXBLADETHIKLESS - BLADETHIСKDIFFERENCE;
-            }
+            set => _handleDiameter.Value = value;
+                
         }
 
             /// <summary>
@@ -207,11 +184,8 @@ namespace Core
         public int HandleLenghtWithGuard
         {
             get => _handleLengthWithGuard.Value;
-            set 
-            {
-                _handleLengthWithGuard.Value = value;
-                //_bladeLength.Value = value + HANDLE_LENGHT_DIFFERENCE;
-            }
+            set => _handleLengthWithGuard.Value = value;
+                
         }
 
         /// <summary>
@@ -220,11 +194,11 @@ namespace Core
         public SwordParameters()
         {
             SwordLength = MinSwordLength;
-            BladeLength = MINBLADELENGTH;
-            BladeThikless = MINBLADETHIKLESS;
-            GuardWidht = MINGUARDWIGHT;
-            HandleDiameter = MINHANDLEDIAMETER;
-            HandleLenghtWithGuard = MINHANDLELENGHTWITHGUARD;
+            BladeLength = MinBladeLength;
+            BladeThikless = MinBladeThickless;
+            GuardWidht = MinGuardWigth;
+            HandleDiameter = MinHandleDiameter;
+            HandleLenghtWithGuard = MinHandleLengthWithGuard;
             BladeType = BladeType.Sharp;
         }
 

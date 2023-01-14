@@ -23,27 +23,27 @@ namespace UnitTests
                 {
                     {
                         SwordParameterType.SwordLength,
-                        SwordParameters.MAXSWORDLENGTH
+                        SwordParameters.MaxSwordLength
                     },
                     {
                         SwordParameterType.BladeLength,
-                        SwordParameters.MAXBLADELENGTH
+                        SwordParameters.MaxBladeLength
                     },
                     {
                         SwordParameterType.BladeThickness,
-                        SwordParameters.MAXBLADETHIKLESS
+                        SwordParameters.MaxBladeThickless
                     },
                     {
                         SwordParameterType.GuardWidth,
-                        SwordParameters.MAXGUARDWIGHT
+                        SwordParameters.MaxGuardWigth
                     },
                     {
                         SwordParameterType.HandleDiameter,
-                        SwordParameters.MAXHANDLEDIAMETER
+                        SwordParameters.MaxHadleDiameter
                     },
                     {
                         SwordParameterType.HandleLengthWithGuard,
-                        SwordParameters.MAXHANDLELENGHTWITHGUARD
+                        SwordParameters.MaxHandleLengthWithGuard
                     },
                 };
 
@@ -106,13 +106,13 @@ namespace UnitTests
             }
 
             Assert.That(testSwordParameters.SwordLength
-                          == SwordParameters.MAXSWORDLENGTH
+                          == SwordParameters.MaxSwordLength
                           && testSwordParameters.BladeThikless
-                          == SwordParameters.MAXBLADETHIKLESS
+                          == SwordParameters.MaxBladeThickless
                           && testSwordParameters.HandleDiameter
-                          == SwordParameters.MAXHANDLEDIAMETER
+                          == SwordParameters.MaxHadleDiameter
                           && testSwordParameters.HandleLenghtWithGuard
-                          == SwordParameters.MAXHANDLELENGHTWITHGUARD, Is.True,
+                          == SwordParameters.MaxHandleLengthWithGuard, Is.True,
                 "Возникает, если геттер вернул не то значение");
         }
 
@@ -121,10 +121,10 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            testSwordParameters.GuardWidht = SwordParameters.MAXGUARDWIGHT;
-            testSwordParameters.BladeLength = SwordParameters.MINBLADELENGTH;
+            testSwordParameters.GuardWidht = SwordParameters.MaxGuardWigth;
+            testSwordParameters.BladeLength = SwordParameters.MinBladeLength;
 
-            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAXGUARDWIGHT),
+            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MaxGuardWigth),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
 
@@ -133,10 +133,10 @@ namespace UnitTests
         {
             var testSwordParameters = DefaultParameters;
 
-            testSwordParameters.GuardWidht = SwordParameters.MAXGUARDWIGHT;
-            testSwordParameters.GuardWidht = SwordParameters.MINGUARDWIGHT;
+            testSwordParameters.GuardWidht = SwordParameters.MaxGuardWigth;
+            testSwordParameters.GuardWidht = SwordParameters.MinGuardWigth;
 
-            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MINBLADELENGTH),
+            Assert.That(testSwordParameters.BladeLength, Is.EqualTo(SwordParameters.MinBladeLength),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
     }

@@ -31,6 +31,7 @@ namespace KompasWrapper
             BuildBlade(bladeLength, bladeThickness, bladeType);
             BuildGuard(bladeLength, bladeThickness, guardWidth);
             BuildHandle(bladeLength, handleDiameter, handleLengthWithGuard);
+
         }
 
         /// <summary>
@@ -40,8 +41,14 @@ namespace KompasWrapper
         /// <param name="bladeThickness">Толщина лезвия.</param>
         private void BuildBlade(double bladeLength, double bladeThickness, BladeType bladeType)
         {
+            const int topBlade = 50;
+            const int backBlade = 200;
+            const int firstTransition = 30;
+            const int secondTransition = 10;
+
             switch (bladeType)
             {
+
                 //Построение острого лезвия
                 case BladeType.Sharp:
                     {
@@ -58,15 +65,17 @@ namespace KompasWrapper
                             { 0, bladeThickness / 2 }
                         };
 
+                        const int cutDistance = 170;
+
                         var entitySketch = _connector.CreatePolygonByDefaultPlane(basePoints);
                         _connector.ExtrudeSketch(entitySketch,
-                            bladeLength / 2 - 50, true);
+                            bladeLength / 2 - topBlade, true);
                         _connector.ExtrudeSketch(entitySketch,
-                        bladeLength / 2 - 200, false);
+                        bladeLength / 2 - backBlade, false);
 
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 200, false);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - backBlade, false);
                         _connector.CreatePolygonByOffsetPlane(basePoints,
-                            bladeLength / 2 - 200, true);
+                            bladeLength / 2 - backBlade, true);
 
                         // Создание вершины острия меча.
                         // Координаты точек вершины меча.
@@ -80,21 +89,21 @@ namespace KompasWrapper
                         _connector.ExtrudeBySections();
 
                         // Создание перехода к рукояти.
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - topBlade, true);
                         _connector.CreatePolygonByOffsetPlane(basePoints,
-                             -bladeLength / 2 + 50, true);
+                             -bladeLength / 2 + topBlade, true);
 
                         // Координаты точек первого перехода меча.
                         var transitionPoints = ChangeScale(basePoints, 1.05, 1);
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 30, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - firstTransition, true);
                         _connector.CreatePolygonByOffsetPlane(transitionPoints,
-                            -bladeLength / 2 + 30, true);
+                            -bladeLength / 2 + firstTransition, true);
 
                         // Координаты точек второго перехода меча.
                         transitionPoints = ChangeScale(basePoints, 1.375, 1);
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 10, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - secondTransition, true);
                         _connector.CreatePolygonByOffsetPlane(transitionPoints,
-                           -bladeLength / 2 + 10, true);
+                           -bladeLength / 2 + secondTransition, true);
 
                         // Выдавливание перехода меча.
                         _connector.ExtrudeBySections();
@@ -107,16 +116,16 @@ namespace KompasWrapper
                         const double cutRadius = 21;
                         var sketch =
                             _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius,
-                                -bladeLength / 2 + 50, false);
+                                -bladeLength / 2 + topBlade, false);
                         circleCenter = new[]
                         {
                             0, -bladeThickness/2 - 19
                         };
-                        _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
+                        _connector.CutExtrusion(sketch, bladeLength / 2 + cutDistance);
                         sketch =
                             _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius,
-                                -bladeLength / 2 + 50, false);
-                        _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
+                                -bladeLength / 2 + topBlade, false);
+                        _connector.CutExtrusion(sketch, bladeLength / 2 + cutDistance);
                         break;
                     }
                 //Построение тупого лезвия
@@ -132,27 +141,27 @@ namespace KompasWrapper
 
                         var entitySketch = _connector.CreatePolygonByDefaultPlane(basePoints);
                         _connector.ExtrudeSketch(entitySketch,
-                            bladeLength / 2 - 50, true);
+                            bladeLength / 2 - topBlade, true);
                         _connector.ExtrudeSketch(entitySketch,
-                            bladeLength / 2 - 200, false);
+                            bladeLength / 2 - backBlade, false);
 
 
                         // Создание перехода к рукояти.
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - topBlade, true);
                         _connector.CreatePolygonByOffsetPlane(basePoints,
-                            -bladeLength / 2 + 50, true);
+                            -bladeLength / 2 + topBlade, true);
 
                         // Координаты точек первого перехода меча.
                         var transitionPoints = ChangeScale(basePoints, 1.05, 1);
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 30, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - firstTransition, true);
                         _connector.CreatePolygonByOffsetPlane(transitionPoints,
-                            -bladeLength / 2 + 30, true);
+                            -bladeLength / 2 + firstTransition, true);
 
                         // Координаты точек второго перехода меча.
                         transitionPoints = ChangeScale(basePoints, 1.375, 1);
-                        _connector.CreateOffsetPlane(bladeLength / 2 - 10, true);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - secondTransition, true);
                         _connector.CreatePolygonByOffsetPlane(transitionPoints,
-                            -bladeLength / 2 + 10, true);
+                            -bladeLength / 2 + secondTransition, true);
 
                         // Выдавливание перехода меча.
                         _connector.ExtrudeBySections();
@@ -170,6 +179,7 @@ namespace KompasWrapper
         private void BuildGuard(double bladeLength, 
             double bladeThickness, double guardWidth)
         {
+            const int guardHeigth = 10;
             // Построение основания гарды меча.
 
             // Координаты точек основания гарды.
@@ -183,7 +193,7 @@ namespace KompasWrapper
                 { guardWidth/2, bladeThickness/2 + 2 }
             };
             var sketch = _connector.CreatePolygonByOffsetPlane(guardPoints, 
-                -bladeLength / 2 + 10, false);
+                -bladeLength / 2 + guardHeigth, false);
             _connector.ExtrudeSketch(sketch, 20, true);
 
             // Построение эфесов.
@@ -199,9 +209,9 @@ namespace KompasWrapper
                 { guardWidth/2, bladeThickness/2 + 9 }
             };
             sketch = _connector.CreatePolygonByOffsetPlane(leftHiltPoints,
-                -bladeLength / 2 + 10, false);
+                -bladeLength / 2 + guardHeigth, false);
             _connector.ExtrudeSketch(sketch, 30, true);
-            _connector.ExtrudeSketch(sketch, 10, false);
+            _connector.ExtrudeSketch(sketch, guardHeigth, false);
 
             // Координаты точек правого эфеса.
             // 0 элемент - координата по X;
@@ -214,9 +224,9 @@ namespace KompasWrapper
                 { -guardWidth/2, bladeThickness/2 + 9 }
             };
             sketch = _connector.CreatePolygonByOffsetPlane(rightHiltPoints, 
-                -bladeLength / 2 + 10, false);
+                -bladeLength / 2 + guardHeigth, false);
             _connector.ExtrudeSketch(sketch, 30, true);
-            _connector.ExtrudeSketch(sketch, 10, false);
+            _connector.ExtrudeSketch(sketch, guardHeigth, false);
         }
 
         /// <summary>
@@ -228,6 +238,11 @@ namespace KompasWrapper
         private void BuildHandle(double bladeLength,
             double handleDiameter, double handleLengthWithGuard)
         {
+            const int firstPommelCircle = 40;
+            const int secondPommelCircle = 25;
+            const int thirdPommelCircle = 10;
+            const int handleLength = 30;
+            const int diameterDifference = 8;
             // Создание ручки.
 
             var radius = handleDiameter / 2;
@@ -237,8 +252,9 @@ namespace KompasWrapper
             };
             var sketch = 
                 _connector.CreateCircleByOffsetPlane(circleCenter, radius,
-                    -bladeLength / 2 + 10, false);
-            _connector.ExtrudeSketch(sketch, handleLengthWithGuard - 30, true);
+                    -bladeLength / 2 + thirdPommelCircle, false);
+            _connector.ExtrudeSketch(sketch, handleLengthWithGuard 
+                                             - handleLength, true);
 
             // Построение навершия.
 
@@ -249,28 +265,30 @@ namespace KompasWrapper
             {
                 0, 0
             };
-            _connector.CreateOffsetPlane(bladeLength / 2 - 40 + handleLengthWithGuard,
+            _connector.CreateOffsetPlane(bladeLength / 2 
+                - firstPommelCircle + handleLengthWithGuard,
                 true);
             _connector.CreateCircleByOffsetPlane(circleCenter, radius, 
-                -bladeLength / 2 - handleLengthWithGuard + 40, true);
+                -bladeLength / 2 - handleLengthWithGuard 
+                + firstPommelCircle, true);
 
             // Центральный круг навершия.
 
             // TODO: Вынести в константы магические числа
-            radius = handleDiameter / 2 + 8;
-            _connector.CreateOffsetPlane(bladeLength / 2 + handleLengthWithGuard - 25, 
-                true);
+            radius = handleDiameter / 2 + diameterDifference;
+            _connector.CreateOffsetPlane(bladeLength / 2 
+                + handleLengthWithGuard - secondPommelCircle, true);
             _connector.CreateCircleByOffsetPlane(circleCenter, radius, 
-                -bladeLength / 2 - handleLengthWithGuard + 25, 
+                -bladeLength / 2 - handleLengthWithGuard + secondPommelCircle, 
                 true);
 
             // Конечный круг навершия.
 
             radius = handleDiameter / 2;
-            _connector.CreateOffsetPlane(bladeLength / 2 + handleLengthWithGuard - 10, 
-                true);
+            _connector.CreateOffsetPlane(bladeLength / 2 
+                + handleLengthWithGuard - thirdPommelCircle, true);
             _connector.CreateCircleByOffsetPlane(circleCenter, radius, 
-                -bladeLength / 2 + 10 - handleLengthWithGuard, 
+                -bladeLength / 2 + thirdPommelCircle - handleLengthWithGuard, 
                 true);
 
             // Выдавливание навершия.
