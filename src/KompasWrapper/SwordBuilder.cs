@@ -27,7 +27,8 @@ namespace KompasWrapper
             double guardWidth = parameters.GuardWidht;
             double handleDiameter = parameters.HandleDiameter;
             double handleLengthWithGuard = parameters.HandleLenghtWithGuard;
-            BuildBlade(bladeLength, bladeThickness);
+            BladeType bladeType = parameters.BladeType;
+            BuildBlade(bladeLength, bladeThickness, bladeType);
             BuildGuard(bladeLength, bladeThickness, guardWidth);
             BuildHandle(bladeLength, handleDiameter, handleLengthWithGuard);
         }
@@ -37,83 +38,129 @@ namespace KompasWrapper
         /// </summary>
         /// <param name="bladeLength">Длина лезвия.</param>
         /// <param name="bladeThickness">Толщина лезвия.</param>
-        private void BuildBlade(double bladeLength, double bladeThickness)
+        private void BuildBlade(double bladeLength, double bladeThickness, BladeType bladeType)
         {
-            // Создание основы меча.
-
-            // Координаты точек основания меча.
-            // 0 элемент - координата по X;
-            // 1 элемент - координата по Y;
-            double[,] basePoints =
+            switch (bladeType)
             {
-                { -40, 0 },
-                { 0, -bladeThickness/2 },
-                { 40, 0 },
-                { 0, bladeThickness/2 }
-            };
+                //Построение острого лезвия
+                case BladeType.Sharp:
+                    {
+                        // Создание основы меча.
 
-            var entitySketch = _connector.CreatePolygonByDefaultPlane(basePoints);
-            _connector.ExtrudeSketch(entitySketch, 
-                bladeLength / 2 - 50, true);
-            _connector.ExtrudeSketch(entitySketch, 
-                bladeLength / 2 - 200, false);
+                        // Координаты точек основания меча.
+                        // 0 элемент - координата по X;
+                        // 1 элемент - координата по Y;
+                        double[,] basePoints =
+                        {
+                            { -40, 0 },
+                            { 0, -bladeThickness / 2 },
+                            { 40, 0 },
+                            { 0, bladeThickness / 2 }
+                        };
 
-            _connector.CreateOffsetPlane(bladeLength / 2 - 200, false);
-            _connector.CreatePolygonByOffsetPlane(basePoints, 
-                bladeLength / 2 - 200, true);
+                        var entitySketch = _connector.CreatePolygonByDefaultPlane(basePoints);
+                        _connector.ExtrudeSketch(entitySketch,
+                            bladeLength / 2 - 50, true);
+                        _connector.ExtrudeSketch(entitySketch,
+                        bladeLength / 2 - 200, false);
 
-            // Создание вершины острия меча.
-            // Координаты точек вершины меча.
-            var edgePoints = ChangeScale(basePoints, 0.01, 0.01);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 200, false);
+                        _connector.CreatePolygonByOffsetPlane(basePoints,
+                            bladeLength / 2 - 200, true);
 
-            _connector.CreateOffsetPlane(bladeLength / 2, false);
-            _connector.CreatePolygonByOffsetPlane(edgePoints, 
-                bladeLength / 2, true);
+                        // Создание вершины острия меча.
+                        // Координаты точек вершины меча.
+                        var edgePoints = ChangeScale(basePoints, 0.01, 0.01);
 
-            // Создание острия меча.
-            _connector.ExtrudeBySections();
+                        _connector.CreateOffsetPlane(bladeLength / 2, false);
+                        _connector.CreatePolygonByOffsetPlane(edgePoints,
+                            bladeLength / 2, true);
 
-            // Создание перехода к рукояти.
-            _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
-            _connector.CreatePolygonByOffsetPlane(basePoints, 
-                -bladeLength / 2 + 50, true);
+                        // Создание острия меча.
+                        _connector.ExtrudeBySections();
 
-            // Координаты точек первого перехода меча.
-            var transitionPoints = ChangeScale(basePoints, 1.05, 1);
-            _connector.CreateOffsetPlane(bladeLength / 2 - 30, true);
-            _connector.CreatePolygonByOffsetPlane(transitionPoints, 
-                -bladeLength / 2 + 30, true);
+                        // Создание перехода к рукояти.
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
+                        _connector.CreatePolygonByOffsetPlane(basePoints,
+                             -bladeLength / 2 + 50, true);
 
-            // Координаты точек второго перехода меча.
-            transitionPoints = ChangeScale(basePoints, 1.375, 1);
-            _connector.CreateOffsetPlane(bladeLength / 2 - 10, true);
-            _connector.CreatePolygonByOffsetPlane(transitionPoints, 
-                -bladeLength / 2 + 10, true);
+                        // Координаты точек первого перехода меча.
+                        var transitionPoints = ChangeScale(basePoints, 1.05, 1);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 30, true);
+                        _connector.CreatePolygonByOffsetPlane(transitionPoints,
+                            -bladeLength / 2 + 30, true);
 
-            // Выдавливание перехода меча.
-            _connector.ExtrudeBySections();
+                        // Координаты точек второго перехода меча.
+                        transitionPoints = ChangeScale(basePoints, 1.375, 1);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 10, true);
+                        _connector.CreatePolygonByOffsetPlane(transitionPoints,
+                           -bladeLength / 2 + 10, true);
 
-            // Создание выреза на мече.
+                        // Выдавливание перехода меча.
+                        _connector.ExtrudeBySections();
 
-            var circleCenter = new[]
-            {
-                0, bladeThickness/2 + 19
-            };
-            const double cutRadius = 21;
-            var sketch = 
-                _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius, 
-                    -bladeLength / 2 + 50, false);
-            circleCenter = new[]
-            {
-                0, -bladeThickness/2 - 19
-            };
-            _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
-            sketch = 
-                _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius, 
-                    -bladeLength / 2 + 50, false);
-            _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
+                        // Создание выреза на мече.
+                        var circleCenter = new[]
+                        {
+                            0, bladeThickness/2 + 19
+                        };
+                        const double cutRadius = 21;
+                        var sketch =
+                            _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius,
+                                -bladeLength / 2 + 50, false);
+                        circleCenter = new[]
+                        {
+                            0, -bladeThickness/2 - 19
+                        };
+                        _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
+                        sketch =
+                            _connector.CreateCircleByOffsetPlane(circleCenter, cutRadius,
+                                -bladeLength / 2 + 50, false);
+                        _connector.CutExtrusion(sketch, bladeLength / 2 + 170);
+                        break;
+                    }
+                //Построение тупого лезвия
+                case BladeType.Rectangular:
+                    {
+                        double[,] basePoints =
+                        {
+                            { -40, -bladeThickness / 2 },
+                            { -40, bladeThickness / 2 },
+                            { 40, bladeThickness / 2 },
+                            { 40, -bladeThickness / 2 }
+                        };
+
+                        var entitySketch = _connector.CreatePolygonByDefaultPlane(basePoints);
+                        _connector.ExtrudeSketch(entitySketch,
+                            bladeLength / 2 - 50, true);
+                        _connector.ExtrudeSketch(entitySketch,
+                            bladeLength / 2 - 200, false);
+
+
+                        // Создание перехода к рукояти.
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 50, true);
+                        _connector.CreatePolygonByOffsetPlane(basePoints,
+                            -bladeLength / 2 + 50, true);
+
+                        // Координаты точек первого перехода меча.
+                        var transitionPoints = ChangeScale(basePoints, 1.05, 1);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 30, true);
+                        _connector.CreatePolygonByOffsetPlane(transitionPoints,
+                            -bladeLength / 2 + 30, true);
+
+                        // Координаты точек второго перехода меча.
+                        transitionPoints = ChangeScale(basePoints, 1.375, 1);
+                        _connector.CreateOffsetPlane(bladeLength / 2 - 10, true);
+                        _connector.CreatePolygonByOffsetPlane(transitionPoints,
+                            -bladeLength / 2 + 10, true);
+
+                        // Выдавливание перехода меча.
+                        _connector.ExtrudeBySections();
+                        break;
+                    }
+            }
         }
-
+ 
         /// <summary>
         /// Построение гарды меча.
         /// </summary>

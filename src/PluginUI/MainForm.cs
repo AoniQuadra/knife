@@ -57,11 +57,17 @@ namespace PluginUI
                 {HandleLenghtWithGuardTextBox, true}
             };
 
+            BladeComboBox.Items.Add("Острое");
+            BladeComboBox.Items.Add("Тупое");
+            BladeComboBox.SelectedItem = BladeComboBox.Items[0];
+
             foreach (var textBox in _textBoxesDictionary)
             {
                 textBox.Key.Text = _swordParameters
                     .GetParameterValueByName(textBox.Value).ToString();
             }
+
+            BladeComboBox.SelectedIndex = (int)_swordParameters.BladeType;
         }
 
         /// <summary>
@@ -70,6 +76,7 @@ namespace PluginUI
         private void BuildButton_Click(object sender, EventArgs e)
         {
             _swordBuilder.BuildSword(_swordParameters);
+            //BladeComboBox.SelectedItem.ToString();
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
@@ -129,6 +136,17 @@ namespace PluginUI
                 toolTip.SetToolTip(textBox, exception.Message);
                 _isValueInTextBoxCorrect[textBox] = false;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BladeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _swordParameters.BladeType =
+                (BladeType)BladeComboBox.SelectedIndex;
         }
     }
 }

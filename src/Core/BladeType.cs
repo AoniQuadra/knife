@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Core
+{
+    /// <summary>
+    /// Тип лезвия
+    /// </summary>
+    public enum BladeType
+    {
+        /// <summary>
+        /// Острое
+        /// </summary>
+        Sharp,
+
+        /// <summary>
+        /// Прямоугольное 
+        /// </summary>
+        Rectangular
+    }
+}

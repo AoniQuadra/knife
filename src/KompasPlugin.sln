@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32901.215
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KompasWrapper", "KompasWrapper\KompasWrapper.csproj", "{40AD4975-DFDB-4132-934F-48A4432B437A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KompasWrapper", "KompasWrapper\KompasWrapper.csproj", "{40AD4975-DFDB-4132-934F-48A4432B437A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginUI", "PluginUI\PluginUI.csproj", "{9812329A-00A8-44A7-8876-15D4A6CDA336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{AFA57533-8F64-464D-AC91-68D63ACE66F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{AFA57533-8F64-464D-AC91-68D63ACE66F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{FE30EAB2-49B5-44FC-ACB0-6933C02D8A5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{FE30EAB2-49B5-44FC-ACB0-6933C02D8A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

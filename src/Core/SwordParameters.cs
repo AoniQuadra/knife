@@ -52,6 +52,11 @@ namespace Core
                 MAXHANDLELENGHTWITHGUARD, MINHANDLELENGHTWITHGUARD);
 
         /// <summary>
+        /// Возврщает и задаёт тип лезвия
+        /// </summary>
+        public BladeType BladeType { get; set; }
+
+        /// <summary>
         /// Словарь содержащий пары (Имя параметра, указатель на него)
         /// </summary>
         private Dictionary<SwordParameterType, Parameter>
@@ -138,7 +143,7 @@ namespace Core
         /// </summary>
         
         //public const int HANDLE_LENGHT_DIFFERENCE = 250;
-        //public const int BLADE_THIСK_DIFFERENCE = 15;
+        public const int BLADETHIСKDIFFERENCE = 10;
 
         //сделать так, чтобы менялось максимальное или минимальное значение у параметра, а не значение
 
@@ -197,7 +202,8 @@ namespace Core
             set
             {
                 _handleDiameter.Value = value;
-                //_bladeThickness.Value = value + BLADE_THIСK_DIFFERENCE;
+                //_bladeThickness.Value = value + BLADETHIСKDIFFERENCE;
+                //MAXBLADETHIKLESS = MAXBLADETHIKLESS - BLADETHIСKDIFFERENCE;
             }
         }
 
@@ -225,6 +231,7 @@ namespace Core
             GuardWidht = MINGUARDWIGHT;
             HandleDiameter = MINHANDLEDIAMETER;
             HandleLenghtWithGuard = MINHANDLELENGHTWITHGUARD;
+            BladeType = BladeType.Sharp;
         }
 
         /// <summary>

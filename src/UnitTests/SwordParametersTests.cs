@@ -116,7 +116,7 @@ namespace UnitTests
                 "Возникает, если геттер вернул не то значение");
         }
 
-        [Test(Description = "Тест на сеттер диаметра головки")]
+        [Test(Description = "Тест на сеттер ширины гарды")]
         public void TestHeadDiameter_Set()
         {
             var testSwordParameters = DefaultParameters;
@@ -124,12 +124,11 @@ namespace UnitTests
             testSwordParameters.GuardWidht = SwordParameters.MAXGUARDWIGHT;
             testSwordParameters.BladeLength = SwordParameters.MINBLADELENGTH;
 
-            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAXGUARDWIGHT
-                /*+ SwordParameters.SLITE_HEAD_DIFFERENCE*/),
+            Assert.That(testSwordParameters.GuardWidht, Is.EqualTo(SwordParameters.MAXGUARDWIGHT),
                 "Сеттер не поменял знаечние зависимого параметра");
         }
 
-        [Test(Description = "Тест на сеттер длины шлица")]
+        [Test(Description = "Тест на сеттер длинны лезвия")]
         public void TestSlitLength_Set()
         {
             var testSwordParameters = DefaultParameters;

@@ -46,13 +46,15 @@
             this.HandleLenghtWithGuardTextBox = new System.Windows.Forms.TextBox();
             this.WaveguideParametersPictureBox = new System.Windows.Forms.PictureBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.BladeComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaveguideParametersPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(277, 305);
+            this.BuildButton.Location = new System.Drawing.Point(277, 343);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(82, 23);
             this.BuildButton.TabIndex = 0;
@@ -68,15 +70,15 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.SwordLengthTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.BladeLengthTextBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.BladeThiklessTextBox, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.GuardWidhtTextBox, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.HandleDiameterTextBox, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.HandleLenghtWithGuardTextBox, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 28);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -95,36 +97,37 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 13);
+            this.label1.Size = new System.Drawing.Size(147, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Sword Lenght (1000-1500 mm)";
+            this.label1.Text = "Длина меча (1000-1500 mm)";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 13);
+            this.label2.Size = new System.Drawing.Size(155, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Blade Lenght (700-1000 mm) ";
+            this.label2.Text = "Длина лезвия (700-1000 mm) ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 13);
+            this.label3.Size = new System.Drawing.Size(141, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Blade Thikless (5-15 mm)";
+            this.label3.Text = "Толщина лезвия (5-15 mm)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 225);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(201, 13);
+            this.label6.Size = new System.Drawing.Size(243, 13);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Handle Lenght With Guard (175-250 mm)";
+            this.label6.Text = "Длина рукоятки вместе с гардой (175-250 mm)";
             // 
             // SwordLengthTextBox
             // 
@@ -176,18 +179,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 135);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(140, 13);
+            this.label4.Size = new System.Drawing.Size(153, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Guard Widht (200 - 300 мм)";
+            this.label4.Text = "Ширина гарды (200 - 300 мм)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 180);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 13);
+            this.label5.Size = new System.Drawing.Size(157, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Handle Diameter (10-30 mm)";
+            this.label5.Text = "Диаметр рукоятки (10-30 mm)";
             // 
             // HandleLenghtWithGuardTextBox
             // 
@@ -205,16 +208,36 @@
             this.WaveguideParametersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("WaveguideParametersPictureBox.InitialImage")));
             this.WaveguideParametersPictureBox.Location = new System.Drawing.Point(377, 28);
             this.WaveguideParametersPictureBox.Name = "WaveguideParametersPictureBox";
-            this.WaveguideParametersPictureBox.Size = new System.Drawing.Size(71, 300);
+            this.WaveguideParametersPictureBox.Size = new System.Drawing.Size(76, 338);
             this.WaveguideParametersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.WaveguideParametersPictureBox.TabIndex = 65;
             this.WaveguideParametersPictureBox.TabStop = false;
+            // 
+            // BladeComboBox
+            // 
+            this.BladeComboBox.FormattingEnabled = true;
+            this.BladeComboBox.Location = new System.Drawing.Point(238, 305);
+            this.BladeComboBox.Name = "BladeComboBox";
+            this.BladeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.BladeComboBox.TabIndex = 66;
+            this.BladeComboBox.SelectedIndexChanged += new System.EventHandler(this.BladeComboBox_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(39, 313);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 13);
+            this.label7.TabIndex = 67;
+            this.label7.Text = "Форма лезвия";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 340);
+            this.ClientSize = new System.Drawing.Size(466, 378);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.BladeComboBox);
             this.Controls.Add(this.WaveguideParametersPictureBox);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.BuildButton);
@@ -226,6 +249,7 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaveguideParametersPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -247,6 +271,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox WaveguideParametersPictureBox;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ComboBox BladeComboBox;
+        private System.Windows.Forms.Label label7;
     }
 }
 
