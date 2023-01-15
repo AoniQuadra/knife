@@ -273,8 +273,7 @@ namespace KompasWrapper
                 + firstPommelCircle, true);
 
             // Центральный круг навершия.
-
-            // TODO: Вынести в константы магические числа
+            
             radius = handleDiameter / 2 + diameterDifference;
             _connector.CreateOffsetPlane(bladeLength / 2 
                 + handleLengthWithGuard - secondPommelCircle, true);

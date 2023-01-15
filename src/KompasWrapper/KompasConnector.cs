@@ -99,7 +99,6 @@ namespace KompasWrapper
         public ksEntity CreateCircleByOffsetPlane(double[] center, double radius, 
             double offset, bool isSketchCollection)
         {
-            // TODO: Дубль
             ksEntity sketch =
                 (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition definition =
@@ -149,7 +148,6 @@ namespace KompasWrapper
         public ksEntity CreatePolygonByOffsetPlane(double[,] points,
             double offset, bool isSketchCollection)
         {
-            // TODO: Дубль
             ksEntity sketch = 
                 (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition definition = 
@@ -186,7 +184,6 @@ namespace KompasWrapper
         /// <returns>Сформированный эскиз.</returns>
         public ksEntity CreatePolygonByDefaultPlane(double[,] points)
         {
-            // TODO: Дубль
             ksEntity entitySketch = 
                 (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
             ksEntity basePlane = 
