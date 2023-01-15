@@ -74,8 +74,7 @@ namespace Core
         /// Минимальная длинна меча
         /// </summary>
         public const int MinSwordLength = 1000;
-
-        // TODO: Переименовать константы как на примере выше
+        
         /// <summary>
         /// Максимальная длинна меча
         /// </summary>
